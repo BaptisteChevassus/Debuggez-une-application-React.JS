@@ -23,7 +23,7 @@ export const DataProvider = ({ children }) => {
     try {
       setData(await api.loadData());
     } catch (err) {
-      setError(err);
+      setError(err || "An error occured");
     }
   }, []);
   useEffect(() => {
