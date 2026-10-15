@@ -41,4 +41,24 @@ describe("When slider is created", () => {
       "Oeuvre à la coopération entre le secteur public et le privé."
     );
   });
+  it("the cards are sorted from the most recent to the oldest", async () => {
+    api.loadData = jest.fn().mockReturnValue({
+      focus: [
+        { title: "Mars", description: "", date: "2022-03-15T12:00:00.000Z", cover: "" },
+        { title: "Janvier", description: "", date: "2022-01-15T12:00:00.000Z", cover: "" },
+        { title: "Mai", description: "", date: "2022-05-15T12:00:00.000Z", cover: "" },
+      ],
+    });
+    render(
+      <DataProvider>
+        <Slider />
+      </DataProvider>
+    );
+    const titles = await screen.findAllByRole("heading", { level: 3 });
+    expect(titles.map((title) => title.textContent)).toEqual([
+      "Mai",
+      "Mars",
+      "Janvier",
+    ]);
+  });
 });
