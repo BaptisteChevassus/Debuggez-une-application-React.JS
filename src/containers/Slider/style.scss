@@ -11,6 +11,12 @@
     top: 0;
     position: absolute;
     transition: opacity 1s;
+    img {
+      display: block;
+      width: 100%;
+      height: 586px;
+      object-fit: cover;
+    }
     &--hide {
       opacity: 0;
     }
