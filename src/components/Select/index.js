@@ -25,7 +25,10 @@ const Select = ({
       {label && <div className="label">{label}</div>}
       <div className="Select">
         <ul>
-          <li className={collapsed ? "SelectTitle--show" : "SelectTitle--hide"}>
+          <li
+            className={collapsed ? "SelectTitle--show" : "SelectTitle--hide"}
+            onClick={() => setCollapsed(!collapsed)}
+          >
             {value || (!titleEmpty && "Toutes")}
           </li>
           {!collapsed && (
@@ -54,6 +57,8 @@ const Select = ({
           type="button"
           data-testid="collapse-button-testid"
           className={collapsed ? "open" : "close"}
+          aria-label={label ? `Afficher les choix : ${label}` : "Afficher les choix"}
+          aria-expanded={!collapsed}
           onClick={(e) => {
             e.preventDefault();
             setCollapsed(!collapsed);

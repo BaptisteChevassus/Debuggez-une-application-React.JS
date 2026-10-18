@@ -23,6 +23,20 @@ describe("When a select is created", () => {
     });
   });
 
+  describe("and a click is triggered on the select title", () => {
+    it("a list of values is displayed", () => {
+      render(<Select selection={["value1", "value2"]} />);
+      expect(screen.queryByText("value1")).not.toBeInTheDocument();
+      fireEvent.click(screen.getByText("Toutes"));
+      expect(screen.getByText("value1")).toBeInTheDocument();
+      expect(screen.getByText("value2")).toBeInTheDocument();
+      expect(screen.getByTestId("collapse-button-testid")).toHaveAttribute(
+        "aria-expanded",
+        "true"
+      );
+    });
+  });
+
   describe("and a click is trigger on collapse button", () => {
     it("a list of values is displayed", () => {
       render(<Select selection={["value1", "value2"]} />);
